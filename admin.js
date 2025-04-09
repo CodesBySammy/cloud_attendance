@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Fetch Students for Attendance
   createEventBtn?.addEventListener('click', async () => {
     try {
-      const response = await fetch('http://localhost:7000/admin/students', {
+      const response = await fetch('/admin/students', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }));
 
     try {
-      const response = await fetch('http://localhost:7000/admin/post-attendance', {
+      const response = await fetch('/admin/post-attendance', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     try {
       const response = await fetch(
-        `http://localhost:7000/admin/view-attendance?eventName=${encodeURIComponent(viewEventName)}&eventDate=${encodeURIComponent(viewEventDate)}`, 
+        `/admin/view-attendance?eventName=${encodeURIComponent(viewEventName)}&eventDate=${encodeURIComponent(viewEventDate)}`, 
         {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         }
@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
       saveBtn.disabled = true;
       saveBtn.textContent = 'Saving...';
 
-      const response = await fetch('http://localhost:7000/admin/edit-attendance', {
+      const response = await fetch('/admin/edit-attendance', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     try {
       const response = await fetch(
-        `http://localhost:7000/admin/download-attendance?eventName=${encodeURIComponent(eventName)}&eventDate=${encodeURIComponent(eventDate)}`, 
+        `/admin/download-attendance?eventName=${encodeURIComponent(eventName)}&eventDate=${encodeURIComponent(eventDate)}`, 
         {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         }
@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // View Event Summary
   viewEventSummaryBtn?.addEventListener('click', async () => {
     try {
-      const response = await fetch('http://localhost:7000/admin/event-summary', {
+      const response = await fetch('/admin/event-summary', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
 
@@ -335,7 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (confirmDelete) {
               try {
-                const response = await fetch('http://localhost:7000/admin/delete-event', {
+                const response = await fetch('/admin/delete-event', {
                   method: 'DELETE',
                   headers: {
                     'Content-Type': 'application/json',
@@ -378,7 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const newStatus = document.getElementById('editAttendanceStatus').value;
 
     try {
-      const response = await fetch('http://localhost:7000/admin/edit-attendance', {
+      const response = await fetch('/admin/edit-attendance', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
