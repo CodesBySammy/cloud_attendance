@@ -14,7 +14,7 @@ document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
 
   try {
     errorMessage.textContent = 'Logging in...';
-    const response = await fetch('http://localhost:7000/login', {
+    const response = await fetch('/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, registrationNumber, password })
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   
   try {
     errorMessage.textContent = 'Loading your attendance...';
-    const response = await fetch('http://localhost:7000/user/events', {
+    const response = await fetch('/user/events', {
       headers: { Authorization: `Bearer ${token}` },
     });
     
