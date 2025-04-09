@@ -1,0 +1,76 @@
+
+           /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      color: #2A2D34;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* Header Styling */
+    h1 {
+      color: #FF6F3C;
+      margin-bottom: 20px;
+    }
+
+    /* Form Styling */
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    label {
+      color: #2A2D34;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="email"], input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+      color: #2A2D34;
+    }
+
+    /* Button Styling */
+    button {
+      background-color: #FF6F3C;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #e65a28;
+    }
+
+    /* Error Message Styling */
+    #errorMessage {
+      color: #FF6F3C;
+      font-weight: bold;
+      margin-top: 10px;
+      text-align: center;
+    }  

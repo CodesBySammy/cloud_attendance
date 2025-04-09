@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <link rel="icon" type="image/png" href="/anda-removebg-preview.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <header class="admin-header">
+    <h1>Admin Panel</h1>
+    <button id="logoutButton" class="logout-btn">Logout</button>
+  </header>
+
+  <main class="admin-container">
+    <div class="action-buttons">
+      <button class="action-btn open-modal" data-modal="createEventModal">
+        <i class="icon-event"></i> Create Event & Post Attendance
+      </button>
+      <button class="action-btn open-modal" data-modal="viewAttendanceModal">
+        <i class="icon-view"></i> View & Download Attendance
+      </button>
+      <button class="action-btn open-modal" data-modal="eventSummaryModal">
+        <i class="icon-summary"></i> Event Summaries
+      </button>
+    </div>
+
+    <!-- Modal Background -->
+    <div id="modalBackground" class="modal-background">
+      <!-- Create Event Modal -->
+      <div id="createEventModal" class="modal-content">
+        <button class="close-modal" aria-label="Close Modal">&times;</button>
+        <h2>Create Event and Post Attendance</h2>
+        
+        <div class="form-group">
+          <label for="eventName">Event Name:</label>
+          <input type="text" id="eventName" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="eventDate">Event Date:</label>
+          <input type="date" id="eventDate" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="eventStartTime">Start Time:</label>
+          <input type="time" id="eventStartTime" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="eventEndTime">End Time:</label>
+          <input type="time" id="eventEndTime" required>
+        </div>
+        
+        <button id="createEvent" class="submit-btn">Create Event</button>
+
+        <div class="attendance-section">
+          <h3>Mark Attendance</h3>
+          <div class="form-group">
+            <label for="searchStudent">Search by Registration Number:</label>
+            <input type="text" id="searchStudent" placeholder="Enter registration number">
+          </div>
+          
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Registration Number</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="studentsTableBody"></tbody>
+            </table>
+          </div>
+          
+          <button id="postAttendance" class="submit-btn">Post Attendance</button>
+          <p id="eventMessage" class="message"></p>
+        </div>
+      </div>
+
+      <!-- View Attendance Modal -->
+      <div id="viewAttendanceModal" class="modal-content">
+        <button class="close-modal" aria-label="Close Modal">&times;</button>
+        <h2>View and Download Attendance</h2>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="viewEventName">Event Name:</label>
+            <input type="text" id="viewEventName" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="viewEventDate">Event Date:</label>
+            <input type="date" id="viewEventDate" required>
+          </div>
+        </div>
+        
+        <div class="button-group">
+          <button id="viewAttendance" class="action-btn">View Attendance</button>
+          <button id="downloadAttendance" class="action-btn download-btn">Download Excel</button>
+        </div>
+
+        <div class="attendance-section">
+          <div class="form-group">
+            <label for="searchStudent1">Search by Registration Number:</label>
+            <input type="text" id="searchStudent1" placeholder="Enter registration number">
+          </div>
+          
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Registration Number</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="attendanceTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event Summary Modal -->
+      <div id="eventSummaryModal" class="modal-content">
+        <button class="close-modal" aria-label="Close Modal">&times;</button>
+        <h2>All Posted Events Summary</h2>
+        
+        <div class="button-group">
+          <button id="viewEventSummary" class="action-btn">Refresh Summaries</button>
+        </div>
+        
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Event Name</th>
+                <th>Event Date</th>
+                <th>Present</th>
+                <th>Absent</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="eventSummaryTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Attendance Modal -->
+    <div id="editAttendanceModal" class="modal-content">
+      <button class="close-modal" aria-label="Close Modal">&times;</button>
+      <h2>Edit Attendance Record</h2>
+      
+      <div class="form-group">
+        <label>Student ID:</label>
+        <input type="text" id="editStudentId" readonly>
+      </div>
+      <div class="form-group">
+        <label>Event Name:</label>
+        <input type="text" id="editEventName" readonly>
+      </div>
+      
+      <div class="form-group">
+        <label>Event Date:</label>
+        <input type="text" id="editEventDate" readonly>
+      </div>
+      
+      <div class="form-group">
+        <label for="editAttendanceStatus">Status:</label>
+        <select id="editAttendanceStatus">
+          <option value="present">Present</option>
+          <option value="absent">Absent</option>
+        </select>
+      </div>
+      
+      <div class="button-group">
+        <button id="saveEditedAttendance" class="submit-btn">Save Changes</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>
